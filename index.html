@@ -1,8 +1,51 @@
 <!DOCTYPE html>
 
-<html>
-    <head>
-        <title>PogDoku</title>
-        <
-    </head>
-</html>
+<head>
+    <title>PogDoku</title>
+    <link rel="stylesheet" href="include/style.css">
+    <link rel="stylesheet" href="include/bootstrap.min.css">
+    <script src="include/require.js"></script>
+    <script src="scripts/index.js"></script>
+</head>
+
+<body onload=initializePage()>
+    <div class="container">
+        <div id="homeContainer">
+            <div class="row text-center">
+                <div class="display-1 col-12 pb-4 center-vertical">PogDoku</div>
+            </div>
+            <div class="row justify-content-center">
+                <button class="btn btn-outline-dark" onclick="hideHome()">Generate!</button>
+            </div>
+        </div>
+        <div id="generateContainer" class="text-center">
+            <table>
+                <tr>
+                    <td>
+                        <h6>Size of grid: </h6>
+                    </td>
+                    <td><input type="number" max="25" maxlength="2"> X <input type="number" max="25" maxlength="2"></td>
+                </tr>
+                <tr>
+                    <td>
+                       <h6>Sudoku Variant: </h6>
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Select Variant 
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Classic</a>
+                                <a class="dropdown-item" href="#">Chess Sudoku</a>
+                                <a class="dropdown-item" href="#">Thermo Sudoku</a>
+                                <a class="dropdown-item" href="#">Sandwich Sudoku</a>
+                                <a class="dropdown-item" href="#">Killer Sudoku</a>
+                            </div>
+                        </div>
+                    </td>    
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>

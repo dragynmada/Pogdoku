@@ -1,9 +1,9 @@
-var vm = new Vue({
-    el: '#container',
-    data: {
+function initializePage() {
+    document.getElementById("homeContainer").style.display = "block";
+    document.getElementById("generateContainer").style.display = "none";
+}
 
-    },
-    methods: {
-        
-    },
-});
+function hideHome() {
+    document.getElementById("homeContainer").style.display = "none";
+    document.getElementById("generateContainer").style.display = "block";
+}
