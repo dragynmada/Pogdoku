@@ -2,14 +2,14 @@
 
 <head>
     <title>PogDoku</title>
-    <link rel="stylesheet" href="include/style.css">
     <link rel="stylesheet" href="include/bootstrap.min.css">
+    <link rel="stylesheet" href="include/style.css">
     <script src="include/require.js"></script>
-    <script src="scripts/index.js"></script>
 </head>
 
 <body onload=initializePage()>
     <div class="container">
+
         <div id="homeContainer">
             <div class="row text-center">
                 <div class="display-1 col-12 pb-4 center-vertical">PogDoku</div>
@@ -18,34 +18,141 @@
                 <button class="btn btn-outline-dark" onclick="hideHome()">Generate!</button>
             </div>
         </div>
-        <div id="generateContainer" class="text-center">
-            <table>
+
+        <div id="generateContainer" class="center-vertical">
+            <table class="center-table">
                 <tr>
-                    <td>
-                        <h6>Size of grid: </h6>
-                    </td>
-                    <td><input type="number" max="25" maxlength="2"> X <input type="number" max="25" maxlength="2"></td>
+                    <h6 class="text-center mb-4">Select your Sudoku variant</h6>    
                 </tr>
                 <tr>
-                    <td>
-                       <h6>Sudoku Variant: </h6>
-                    </td>
-                    <td>
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Select Variant 
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Classic</a>
-                                <a class="dropdown-item" href="#">Chess Sudoku</a>
-                                <a class="dropdown-item" href="#">Thermo Sudoku</a>
-                                <a class="dropdown-item" href="#">Sandwich Sudoku</a>
-                                <a class="dropdown-item" href="#">Killer Sudoku</a>
-                            </div>
-                        </div>
-                    </td>    
+                    <td><button class="btn btn-outline-dark mr-2 ml-2" onclick="createClassic()">Classic</button></td>
+                    <td><button class="btn btn-outline-dark mr-2 ml-2">Chess</button></td>
+                    <td><button class="btn btn-outline-dark mr-2 ml-2">Killer</button></td>
+                    <td><button class="btn btn-outline-dark mr-2 ml-2">Thermo</button></td>
+                    <td><button class="btn btn-outline-dark mr-2 ml-2">Sandwich</button></td>
                 </tr>
             </table>
         </div>
+
+        <div id="creationContainer">
+            <div class="text-center">
+                <div class="display-4 mb-5 mt-5">Insert givens</div>
+            </div>
+            <table id="sudoku-grid" class="grid center-table mb-5">
+                <colgroup class="sudoku-colgroup"><col><col><col></colgroup>
+                <colgroup class="sudoku-colgroup"><col><col><col></colgroup>
+                <colgroup class="sudoku-colgroup"><col><col><col></colgroup>
+                <tbody class="sudoku-rowgroup">
+                    <tr> 
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                    </tr>
+                    <tr> 
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                    </tr>
+                    <tr> 
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                    </tr>
+                </tbody>
+                <tbody class="sudoku-rowgroup">
+                    <tr> 
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                    </tr>
+                    <tr> 
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                    </tr>
+                    <tr> 
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                    </tr>
+                </tbody>
+                <tbody class="sudoku-rowgroup">
+                    <tr> 
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                    </tr>
+                    <tr> 
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                    </tr>
+                    <tr> 
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                        <td class="cell-data"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-center">
+                <button class="btn btn-outline-dark">Let's Go!</button>
+            </div>
+        </div>
     </div>
 </body>
+
+<script src="scripts/index.js"></script>

@@ -1,3 +1,28 @@
 .center-vertical {
     margin-top: 20%;
 }
+
+.center-table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.grid { 
+    border-collapse: collapse;
+    font-family: Calibri, sans-serif;
+}
+
+.sudoku-colgroup, .sudoku-rowgroup  {
+    border: solid medium;
+}
+
+.cell-data {
+    border: solid thin;
+    height: 65px;
+    width: 65px;
+    text-align: center;
+}
+
+.selected {
+    background-color: #faff9e;
+}
