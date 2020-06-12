@@ -23,25 +23,30 @@ var grid = document.getElementById("sudoku-grid"),
     selectMultiple = false;
 
 grid.addEventListener("mousedown", highlight);
-
-document.addEventListener("mousedown", function(event) {
-    if (event.ctrlKey)
-        selectMultiple = true;
-    else
-        selectMultiple = false;
-});
+grid.addEventListener("keypress", enterNum);
 
 function highlight(cell) {
-    selected = grid.getElementsByClassName("selected");
     if (cell.target.className == "cell-data") { // check if cell isn't already selected
-        if (selectMultiple == false) {
-            for (var i = 0; i < selected.length; i++)
+        if (!cell.ctrlKey) { // check if we do not want to select multiple cells
+            selected = grid.getElementsByClassName("selected");
+            for (var i = 0; i < selected.length; i++) {
                 selected[i].className = "cell-data";
+            }
             cell.target.className = "cell-data selected";
-        } else {
+
+        } else { // add to the selected list
             cell.target.className = "cell-data selected";
         }   
     } else { // cell is already selected, so deselect it
         cell.target.className = "cell-data";        
+    }
+}
+
+function enterNum(event) {
+    alert(event.keyCode);
+    if (event.keyCode >= 49 && event.keyCode <= 57) {
+        selected = grid.getElementsByClassName("selected");
+        for (var i = 0; i < selected.length; i++)
+            selected[i].innerHTML = event.keyCode - 48;
     }
 }
