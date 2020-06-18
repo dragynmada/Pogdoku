@@ -20,9 +20,25 @@
     border: solid thin;
     height: 65px;
     width: 65px;
-    text-align: center;
 }
 
 .selected {
     background-color: #faff9e;
+}
+
+.sudoku-given {
+    font-size: 40px;
+    text-align: center;
+    border: solid thin;
+}
+
+.option-btn {
+    width: 5.5em;
+    height: 2.5em;
+}
+
+.number-cell {
+    width: 3em;
+    height: 3em;
+    font-weight: bolder;
 }
