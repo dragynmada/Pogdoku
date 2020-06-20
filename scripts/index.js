@@ -8,6 +8,12 @@ document.addEventListener("keydown", enterNum);
 
 // GAME LOGIC //
 // TODO: givens array, corners array, centers array, digits array
+var givenList = [[]], // list that holds all givens for the grid 
+    cornerList = [[[]]], // list that will hold corner digits entered by user
+    centerList = [[[]]], // list that will hold center digits entered by user
+    digitsList = [[]], // list that will hold sudoku digits entered by user
+    gameStart = false; // boolean indicating whether the game has started
+
 // TODO: Queue for undo and redo
 
 /*
@@ -50,6 +56,17 @@ function playGame() {
     document.getElementById("gameControls").style.display = "block";
     document.getElementById("insertHeader").style.display = "none";
     document.getElementById("startGame").style.display = "none";
+    var currID = "";
+    // load the givens into the given list
+    for (var row = 1; row <= 9; row++) {
+        for (var col = 1; col <= 9; col++) {
+            currID = "r" + row.toString(10) + "c" + col.toString(10);
+            if (document.getElementById(currID).innerHTML != "") {
+                givenList[row-1][col-1] = parseInt(document.getElementById(currID).innerHTML);
+            }
+        }
+    }
+    gameStart = true;
 }
 
 /*
@@ -86,20 +103,30 @@ function highlight(cell) {
 Functionality for entering and deleting a number from a given cell based on keyboard input
 */
 function enterNum(event) {
-
-    if (event.keyCode == 8 || event.keyCode == 46) {
-        for (var i = 0; i < selected.length; i++) {
-            selected[i].innerHTML = "";
-            selected[i].className = "cell-data selected";
+    if (!(gameStart && event.target.className.includes("sudoku-given"))) { // TODO: fix this garbage lmao
+        if (event.keyCode == 8 || event.keyCode == 46) {
+            for (var i = 0; i < selected.length; i++) {
+                selected[i].innerHTML = "";
+                selected[i].className = "cell-data selected";
+            }
+        } else if (event.keyCode >= 49 && event.keyCode <= 57) { // check if 1-9 was pressed
+            selected = grid.getElementsByClassName("selected"); // grab all the selected cells
+            for (var i = 0; i < selected.length; i++) { // put the number pressed into the cells
+                selected[i].innerHTML = event.keyCode - 48;
+                if (!gameStart)
+                    insertGiven(selected[i]);
+            }
         }
     }
+}
 
-    if (event.keyCode >= 49 && event.keyCode <= 57) { // check if 1-9 was pressed
-        selected = grid.getElementsByClassName("selected"); // grab all the selected cells
-        for (var i = 0; i < selected.length; i++) { // put the number pressed into the cells
-            selected[i].innerHTML = event.keyCode - 48;
-            if (!selected[i].className.includes("sudoku-given"))
-                selected[i].className += " sudoku-given";
-        }
-    }
+function insertGiven(currCell) {
+    if (!currCell.className.includes("sudoku-given"))
+        currCell.className += " sudoku-given";
+}
+
+function extractRowCol(id) {
+    row = parseInt(id.substring(1,2));
+    col = parseInt(id.substring(3,4));
+    return row, col;
 }
