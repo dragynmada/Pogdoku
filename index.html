@@ -5,16 +5,17 @@
     <link rel="stylesheet" href="include/bootstrap.min.css">
     <link rel="stylesheet" href="include/style.css">
     <script src="include/require.js"></script>
+    <script src="include/jquery-3.5.1.js"></script>
 </head>
 
-<body onload=initializePage()>
+<body>
     <div class="container">
         <div id="homeContainer">
             <div class="row text-center">
                 <div class="display-1 col-12 pb-4 center-vertical">PogDoku</div>
             </div>
             <div class="row justify-content-center">
-                <button class="btn btn-outline-dark" onclick="hideHome()">Generate!</button>
+                <button id="generatePuzzle" class="btn btn-outline-dark">Generate!</button>
             </div>
         </div>
 
@@ -24,11 +25,11 @@
                     <h6 class="text-center mb-4">Select your Sudoku variant</h6>    
                 </tr>
                 <tr>
-                    <td><button class="btn btn-outline-dark mr-2 ml-2" onclick="createClassic()">Classic</button></td>
-                    <td><button class="btn btn-outline-dark mr-2 ml-2">Chess</button></td>
-                    <td><button class="btn btn-outline-dark mr-2 ml-2">Killer</button></td>
-                    <td><button class="btn btn-outline-dark mr-2 ml-2">Thermo</button></td>
-                    <td><button class="btn btn-outline-dark mr-2 ml-2">Sandwich</button></td>
+                    <td><button id="generateClassic" class="btn btn-outline-dark mr-2 ml-2">Classic</button></td>
+                    <td><button id="generateChess" class="btn btn-outline-dark mr-2 ml-2">Chess</button></td>
+                    <td><button id="generateKiller" class="btn btn-outline-dark mr-2 ml-2">Killer</button></td>
+                    <td><button id="generateThermo" class="btn btn-outline-dark mr-2 ml-2">Thermo</button></td>
+                    <td><button id="generateSandwich" class="btn btn-outline-dark mr-2 ml-2">Sandwich</button></td>
                 </tr>
             </table>
         </div>
@@ -188,7 +189,7 @@
                 </tr>
             </table>
             <div class="text-center">
-                <button id="startGame" class="btn btn-outline-dark mb-4" onclick=playGame()>Let's Go!</button>
+                <button id="startGame" class="btn btn-outline-dark mb-4">Let's Go!</button>
             </div>
         </div>
     </div>
