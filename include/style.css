@@ -20,6 +20,7 @@
     border: solid thin;
     height: 65px;
     width: 65px;
+    user-select: none;
 }
 
 .selected {

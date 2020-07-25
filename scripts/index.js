@@ -1,5 +1,4 @@
 var grid = $('#sudoku-grid'),
-    selected = $('.selected'),
     cell = $('.cell-data'),
     givenList = [[]], // list that holds all givens for the grid 
     cornerList = [[[]]], // list that will hold corner digits entered by user
@@ -23,16 +22,30 @@ $('#generateClassic').click(function() {
     $('#gameControls').hide();
 });
 
-// HIGHLIGHT FUNCTION
-cell.click(function(event) {
-    var cell = $(event.currentTarget);
-    if (!cell.hasClass("selected")) {
-        if (!event.ctrlKey) {
-            $('.selected').removeClass("selected");  
-        }
+var down = false;
+$(grid).mousedown(function() {
+    down = true;
+}).mouseup(function() {
+    down = false;
+});
+
+// HIGHLIGHT FUNCTIONS
+cell.mouseover(function(event) {
+    if (down) {
+        var cell = $(event.target);
+        if (cell.hasClass("selected"))
+            cell.removeClass("selected");
+        else 
+            cell.addClass("selected");
+    }
+}).mousedown(function(event) {
+    var cell = $(event.target);
+    if (cell.hasClass("selected"))
+        cell.removeClass("selected")
+    else {
+        if (!event.ctrlKey)
+            $('.selected').removeClass("selected");
         cell.addClass("selected");
-    } else {
-        cell.removeClass("selected");
     }
 });
 
