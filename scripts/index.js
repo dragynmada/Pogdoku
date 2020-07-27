@@ -22,8 +22,15 @@ $('#generateClassic').click(function() {
     $('#gameControls').hide();
 });
 
+$('#startGame').click(function() {
+    $('#gameControls').show();
+    $('#insertHeader').hide();
+    $('#startGame').hide();
+    $('#playContainer').addClass("center-vertical");
+});
+
 var down = false;
-$(grid).mousedown(function() {
+$(document).mousedown(function() {
     down = true;
 }).mouseup(function() {
     down = false;
@@ -50,10 +57,14 @@ cell.mouseover(function(event) {
 });
 
 // ENTERING DIGITS
-$(document).keypress(function(event) {
+$(document).keydown(function(event) {
     if(event.keyCode == 8 || event.keyCode == 46) {
         $('.selected').html("").removeClass("sudoku-given");
     } else if (event.keyCode >= 49 && event.keyCode <= 57) {
         $('.selected').html(event.keyCode - 48).addClass("sudoku-given");
     }
 });
+
+$('#deleteNum').click(function() {
+    $('.selected').html("");
+})
