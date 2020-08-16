@@ -1,6 +1,5 @@
 var grid = $('#sudoku-grid'),
     cell = $('.cell-data'),
-    givenList = [[]], // list that holds all givens for the grid 
     cornerList = [[[]]], // list that will hold corner digits entered by user
     centerList = [[[]]], // list that will hold center digits entered by user
     digitsList = [[]], // list that will hold sudoku digits entered by user
@@ -27,6 +26,7 @@ $('#startGame').click(function() {
     $('#insertHeader').hide();
     $('#startGame').hide();
     $('#playContainer').addClass("center-vertical");
+    gameStart = true;
 });
 
 var down = false;
@@ -58,13 +58,36 @@ cell.mouseover(function(event) {
 
 // ENTERING DIGITS
 $(document).keydown(function(event) {
-    if(event.keyCode == 8 || event.keyCode == 46) {
-        $('.selected').html("").removeClass("sudoku-given");
-    } else if (event.keyCode >= 49 && event.keyCode <= 57) {
-        $('.selected').html(event.keyCode - 48).addClass("sudoku-given");
+    if (!gameStart) {
+        if(event.keyCode == 8 || event.keyCode == 46) {
+            $('.selected').html("").removeClass("sudoku-given");
+        } else if (event.keyCode >= 49 && event.keyCode <= 57) {
+            $('.selected').html(event.keyCode - 48).addClass("sudoku-given");
+        }
+    } else {
+        if(event.keyCode == 8 || event.keyCode == 46) {
+            $(".selected").each(function() {
+                if (!$(this).hasClass("sudoku-given"))
+                    $(this).html("");
+            })
+        } else if (event.keyCode >= 49 && event.keyCode <= 57) {
+            $(".selected").each(function() {
+                if (!$(this).hasClass("sudoku-given"))
+                    $(this).html(event.keyCode - 48);
+            })
+        }
     }
+    
 });
 
-$('#deleteNum').click(function() {
-    $('.selected').html("");
+$('#delete-option').click(function() {
+    $(".selected").each(function() {
+        if (!$(this).hasClass("sudoku-given"))
+            $(this).html("");
+    })
 })
+
+$('.option-btn').click(function(event) {
+    $('.option-btn').removeClass("active");
+    $(event.target).addClass("active");
+});
